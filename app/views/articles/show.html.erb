@@ -1,18 +1,67 @@
-<p>
-  <strong>Title:</strong>
+<div class="single">
+  <div class="container">
+    <div class="single-top">
+    <div class=" single-grid">
+<h4>
+  <!--<strong>Title:</strong>-->
   <%= @article.title %>
-</p>
+</h4>
+
  
 <p>
-  <strong>Text:</strong>
+      <ul class="blog-ic">
+        <li><span> <i  class="glyphicon glyphicon-user"> </i><%=  %>></span>  </li>
+        <li><span><i class="glyphicon glyphicon-time"> </i><%= @article.created_at.strftime("%d-%m-%Y") %></span></li>
+        <li><span><i class="glyphicon glyphicon-eye-open"> </i>Hits:145</span></li>
+      </ul>
+  <!--<strong>Text:</strong>-->
   <%= @article.text %>
 </p>
- 
-<h2>Comments</h2>
+
+<% if @article.image.file? %>
+    <p>
+    <%= image_tag @article.image.url(:medium) %>
+    </p>
+<% end %>
+    </div>
+
+
+
+      <div class="comments heading">
+      <h3>Comments</h3>
+
 <%= render @article.comments %>
- 
-<h2>Add a comment:</h2>
+
+      </div>
+
+      <div class="comment-bottom heading">
+              <h3>Leave a Comment</h3>
+
 <%= render 'comments/form' %>
- 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+
+            </div>
+      <!--<table>-->
+        <!--<tr>-->
+          <!--<td><div class="about-btn">-->
+            <!--<%= link_to 'Edit', edit_article_path(@article) %>-->
+          <!--</div></td>-->
+          <!--<td><div class="about-btn">-->
+            <!--<%= link_to 'Back', articles_path %>-->
+          <!--</div></td>-->
+          <!---->
+
+        <!--</tr>-->
+
+      <!--</table>-->
+      <div class="about-btn">
+        <%= link_to 'Edit', edit_article_path(@article) %>
+      </div>
+      <div class="about-btn">
+        <%= link_to 'Back', articles_path %>
+      </div>
+
+
+
+    </div>
+    </div>
+  </div>

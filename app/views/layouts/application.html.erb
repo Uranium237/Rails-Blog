@@ -1,14 +1,106 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <title>Blog</title>
+<head>
+  <title>Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Coffee Break Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+  <!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
+  <!--<link href="bootstrap.css" rel='stylesheet' type='text/css' />-->
+  <!--<link href="stylesheets/style.scss" rel='stylesheet' type='text/css' />-->
+  <!--<script src="javascripts/jquery.min.js"></script>-->
+  <!--&lt;!&ndash;&#45;&#45; start-smoth-scrolling&#45;&#45;&ndash;&gt;-->
+  <!--<script type="text/javascript" src="javascripts/move-top.js"></script>-->
+  <!--<script type="text/javascript" src="javascripts/easing.js"></script>-->
+
+  <!--start-smoth-scrolling-->
+
+
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event){
+      event.preventDefault();
+      $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    });
+  });
+</script>
   </head>
 
   <body>
-    <%= yield %>
+  <!--header-top-starts-->
+  <div class="header-top">
+    <div class="container">
+      <div class="head-main">
+        <a href="<%=root_path %>">
+          <%= image_tag "logo-1.png" %>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--header-top-end-->
+  <!--start-header-->
+  <div class="header">
+    <div class="container">
+      <div class="head">
+        <div class="navigation">
+          <span class="menu"></span>
+          <ul class="navig">
+            <li><%= link_to 'Main' , root_path%></li>
+            <li><%= link_to 'My Blog', controller: 'articles' %></li>
+            <!--<li><a href="about.html">About</a></li>-->
+            <!--<li><a href="gallery.html">Gallery</a></li>-->
+            <!--<li><a href="typo.html">Typo</a></li>-->
+            <!--<li><a href="contact.html">Contact</a></li>-->
+          </ul>
+        </div>
+        <div class="header-right">
+          <div class="search-bar">
+            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+            <input type="submit" value="">
+          </div>
+          <ul>
+            <li><a href="#"><span class="fb"> </span></a></li>
+            <li><a href="#"><span class="twit"> </span></a></li>
+            <li><a href="#"><span class="pin"> </span></a></li>
+            <li><a href="#"><span class="rss"> </span></a></li>
+            <li><a href="#"><span class="drbl"> </span></a></li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <!--header end-->
+  <!-- script-for-menu -->
+  <script>
+    $("span.menu").click(function(){
+      $(" ul.navig").slideToggle("slow" , function(){
+      });
+    });
+  </script>
+  <!-- script-for-menu -->
+
+
+
+  <%= yield %>
+
+  <div class="clearfix"></div>
+  <!--footer-starts-->
+  <div class="footer">
+    <div class="container">
+      <div class="footer-text">
+        <p> @<a href="http://google.com/" target="_blank">DarkSkull</a> </p>
+      </div>
+    </div>
+  </div>
+  <!--footer-end-->
+
   </body>
 </html>

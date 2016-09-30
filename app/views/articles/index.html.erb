@@ -1,21 +1,211 @@
-<h1>Listing Articles</h1>
-<%= link_to 'New article', new_article_path %>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= article.text %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy', article_path(article),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+
+
+<!--about-starts-->
+
+<!--about-end-->
+
+<div class="container">
+  <div class="about-main">
+    <div class="col-md-8 about-center">
+      <div class="about-one">
+        <h1>Listing Articles</h1>
+        <h3>Void of the month</h3>
+      </div>
+      <div class="about-tre">
+         <% @articles.each_slice(2) do |pair_articles| %>
+            <% pair_articles.each do |article| %>
+            <div class="a-1">
+
+               <div class="col-md-6 abt-left">
+
+                 <% if article.image.file? %>
+                       <!--<a href=article><image_tag article.image.url(:thumb) /></a>-->
+
+                     <%= link_to article_path(article) do %>
+                     <%= image_tag article.image.url(:thumb, :height=> '200px') %>
+                     <% end %>
+
+                 <% end %>
+
+                 <h3><%= link_to article.title, article_path(article) %></h3>
+                 <p><%= article.text.first(30)%></p>
+                 <table>
+                   <tr>
+                     <td><div class="about-btn">
+                       <%= link_to 'Show', article_path(article) %>
+                     </div></td>
+                     <td><div class="about-btn">
+                       <%= link_to 'Edit', edit_article_path(article) %>
+                     </div></td>
+                     <td><div class="about-btn">
+                       <%= link_to 'Destroy', article_path(article),
+                                   method: :delete,
+                                   data: { confirm: 'Are you sure?' } %>
+                     </div></td>
+
+                   </tr>
+
+                 </table>
+
+               </div>
+
+            </div>
+            <% end %>
+            <div class="clearfix"></div>
+         <% end %>
+        <div class="clearfix"></div>
+
+
+       </div>
+    </div>
+
+    <div class="col-md-4 about-right heading">
+      <div class="abt-1">
+        <h3>ABOUT US</h3>
+        <div class="abt-one">
+          <img src="c-2.jpg" alt="" />
+          <p>Quisque non tellus vitae mauris luctus aliquam sit amet id velit. Mauris ut dapibus nulla, a dictum neque.</p>
+
+        </div>
+      </div>
+      <div class="abt-2">
+        <h3>YOU MIGHT ALSO LIKE</h3>
+        <div class="might-grid">
+          <div class="grid-might">
+            <a href="single.html"><img src="images/c-12.jpg" class="img-responsive" alt=""> </a>
+          </div>
+          <div class="might-top">
+            <h4><a href="single.html">Duis consectetur gravida</a></h4>
+            <p>Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="might-grid">
+          <div class="grid-might">
+            <a href="single.html"><img src="images/c-10.jpg" class="img-responsive" alt=""> </a>
+          </div>
+          <div class="might-top">
+            <h4><a href="single.html">Duis consectetur gravida</a></h4>
+            <p> Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="might-grid">
+          <div class="grid-might">
+            <a href="single.html"><img src="images/c-11.jpg" class="img-responsive" alt=""> </a>
+          </div>
+          <div class="might-top">
+            <h4><a href="single.html">Duis consectetur gravida</a></h4>
+            <p> Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="abt-2">
+        <h3>ARCHIVES</h3>
+        <ul>
+          <li><a href="single.html">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </a></li>
+          <li><a href="single.html">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</a></li>
+          <li><a href="single.html">When an unknown printer took a galley of type and scrambled it to make a type specimen book. </a> </li>
+          <li><a href="single.html">It has survived not only five centuries, but also the leap into electronic typesetting</a> </li>
+          <li><a href="single.html">Remaining essentially unchanged. It was popularised in the 1960s with the release of </a> </li>
+          <li><a href="single.html">Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing </a> </li>
+          <li><a href="single.html">Software like Aldus PageMaker including versionsof Lorem Ipsum.</a> </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+
+
+
+
+  <div class="clearfix"></div>
+
+  <div class="container">
+    <div class="about-main">
+      <div class="col-md-8 about-center">
+        <div class="about-one">
+  <div class="clearfix"></div>
+  <div class="about-one">
+    <h1 class="b1">
+      <a href= <%= new_article_path%> ><span class="label label-default">New article</span></a>
+    <!--<div class="label label-default">-->
+      <!--<%= link_to 'New article', new_article_path %>-->
+    <!--</div>-->
+      </h1>
+  </div>
+  <div class="clearfix"></div>
+</div>
+  </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+
+
+  <div class="clearfix"></div>
+
+
+<!--slide-starts-->
+<div class="slide">
+  <div class="container">
+    <div class="fle-xsel">
+      <ul id="flexiselDemo3">
+        <% @articles.each do |article| %>
+
+        <li>
+          <a href="#">
+            <div class="banner-1">
+              <% if article.image.file? %>
+
+                  <%= image_tag article.image.url(:thumb) %>
+              <% end %>
+
+
+            </div>
+          </a>
+        </li>
+
+        <% end %>
+      </ul>
+
+      <script type="text/javascript">
+        $(window).load(function() {
+
+          $("#flexiselDemo3").flexisel({
+            visibleItems: 5,
+            animationSpeed: 1000,
+            autoPlay: true,
+            autoPlaySpeed: 3000,
+            pauseOnHover: true,
+            enableResponsiveBreakpoints: true,
+            responsiveBreakpoints: {
+              portrait: {
+                changePoint:480,
+                visibleItems: 2
+              },
+              landscape: {
+                changePoint:640,
+                visibleItems: 3
+              },
+              tablet: {
+                changePoint:768,
+                visibleItems: 3
+              }
+            }
+          });
+
+        });
+      </script>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+<!--slide-end-->

@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 @font-face {
     font-family: 'RobotoSlab-Regular';
-    src:url(../fonts/RobotoSlab-Regular.ttf) format('truetype');
+    src:url(RobotoSlab-Regular.ttf) format('truetype');
 }
 @font-face {
     font-family: 'Raleway-Regular';
@@ -103,7 +103,7 @@ ul.navig li a:hover ul.navig li a:after{
 }
 @media (max-width: 768px){
 span.menu:before {
-	content: url(../images/nav-icon.png);
+	content: url(nav-icon.png);
 	cursor: pointer;	
 	height:32px;
 }
@@ -660,7 +660,7 @@ ul.navig li a.active{
 }
 .nbs-flexisel-nav-right {
 	right:-3em;
-	background: url(../images/right.png) no-repeat 1px 1px ;
+	background: url(right.png) no-repeat 1px 1px ;
 }
 .banner-1 {
 	margin: 0em 0.5em;
@@ -1421,7 +1421,7 @@ ul.navig li a {
 }
 .nbs-flexisel-nav-right {
     right: -2em;
-    background: url(../images/right.png) no-repeat 0px 0px;
+    background: url(right.png) no-repeat 0px 0px;
 	background-size: 100%;
 }
 .slide {
