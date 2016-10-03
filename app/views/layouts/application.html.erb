@@ -34,6 +34,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </head>
 
   <body>
+
+
+
   <!--header-top-starts-->
   <div class="header-top">
     <div class="container">
@@ -53,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <span class="menu"></span>
           <ul class="navig">
             <li><%= link_to 'Main' , root_path%></li>
-            <li><%= link_to 'My Blog', controller: 'articles' %></li>
+            <li><%= link_to 'My Blog', articles_path %></li>
             <!--<li><a href="about.html">About</a></li>-->
             <!--<li><a href="gallery.html">Gallery</a></li>-->
             <!--<li><a href="typo.html">Typo</a></li>-->
@@ -72,10 +75,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li><a href="#"><span class="rss"> </span></a></li>
             <li><a href="#"><span class="drbl"> </span></a></li>
           </ul>
+
+          <div class="clearfix"></div>
+
+
         </div>
-        <div class="clearfix"></div>
+
+
+
+
+      </div>
+
+
+    </div>
+
+    <div class="container">
+    <div class="about-main">
+      <!--<div class="col-md-8 about-center">-->
+        <div class="about-one">
+          <% if user_signed_in? %>
+              <span> Hello, <%= current_user.email %></span>
+              <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+          <% else %>
+              <%= link_to 'Log in', new_user_session_path %> or <%= link_to 'Sign in', new_user_registration_path %>
+          <% end %>
+          <div class="clearfix"></div>
+        <!--</div>-->
       </div>
     </div>
+    </div>
+
   </div>
   <!--header end-->
   <!-- script-for-menu -->
@@ -101,6 +130,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
   </div>
   <!--footer-end-->
+
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
 
   </body>
 </html>
