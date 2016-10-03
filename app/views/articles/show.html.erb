@@ -1,56 +1,58 @@
 <div class="single">
   <div class="container">
     <div class="single-top">
-    <div class=" single-grid">
-<h4>
-  <!--<strong>Title:</strong>-->
-  <%= @article.title %>
-</h4>
+      <div class=" single-grid">
+        <h4>
+          <!--<strong>Title:</strong>-->
+          <%= @article.title %>
+        </h4>
 
- 
-<p>
-      <ul class="blog-ic">
-        <li><span> <i  class="glyphicon glyphicon-user"> </i><%=  %>></span>  </li>
-        <li><span><i class="glyphicon glyphicon-time"> </i><%= @article.created_at.strftime("%d-%m-%Y") %></span></li>
-        <li><span><i class="glyphicon glyphicon-eye-open"> </i>Hits:145</span></li>
-      </ul>
-  <!--<strong>Text:</strong>-->
-  <%= @article.text %>
-</p>
 
-<% if @article.image.file? %>
-    <p>
-    <%= image_tag @article.image.url(:medium) %>
-    </p>
-<% end %>
-    </div>
+        <p>
+        <ul class="blog-ic">
+          <li><span> <i class="glyphicon glyphicon-user"> </i><%= %>></span></li>
+          <li><span><i class="glyphicon glyphicon-time"> </i><%= @article.created_at.strftime("%d-%m-%Y") %></span></li>
+          <li><span><i class="glyphicon glyphicon-eye-open"> </i>Hits:145</span></li>
+        </ul>
+        <!--<strong>Text:</strong>-->
+        </p>
 
+        <p>
+          <%= @article.text %>
+        </p>
+
+        <% if @article.image.file? %>
+            <p>
+              <%= image_tag @article.image.url(:medium) %>
+            </p>
+        <% end %>
+      </div>
 
 
       <div class="comments heading">
-      <h3>Comments</h3>
+        <h3>Comments</h3>
 
-<%= render @article.comments %>
+        <%= render @article.comments %>
 
       </div>
 
       <div class="comment-bottom heading">
-              <h3>Leave a Comment</h3>
+        <h3>Leave a Comment</h3>
 
-<%= render 'comments/form' %>
+        <%= render 'comments/form' %>
 
-            </div>
+      </div>
       <!--<table>-->
-        <!--<tr>-->
-          <!--<td><div class="about-btn">-->
-            <!--<%= link_to 'Edit', edit_article_path(@article) %>-->
-          <!--</div></td>-->
-          <!--<td><div class="about-btn">-->
-            <!--<%= link_to 'Back', articles_path %>-->
-          <!--</div></td>-->
-          <!---->
+      <!--<tr>-->
+      <!--<td><div class="about-btn">-->
+      <!--<%= link_to 'Edit', edit_article_path(@article) %>-->
+      <!--</div></td>-->
+      <!--<td><div class="about-btn">-->
+      <!--<%= link_to 'Back', articles_path %>-->
+      <!--</div></td>-->
+      <!---->
 
-        <!--</tr>-->
+      <!--</tr>-->
 
       <!--</table>-->
       <div class="about-btn">
@@ -61,7 +63,6 @@
       </div>
 
 
-
-    </div>
     </div>
   </div>
+</div>

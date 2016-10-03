@@ -1,5 +1,3 @@
-
-
 <!--about-starts-->
 
 <!--about-end-->
@@ -12,59 +10,66 @@
         <h3>Void of the month</h3>
       </div>
       <div class="about-tre">
-         <% @articles.each_slice(2) do |pair_articles| %>
+        <% @articles.each_slice(2) do |pair_articles| %>
             <% pair_articles.each do |article| %>
-            <div class="a-1">
+                <div class="a-1">
 
-               <div class="col-md-6 abt-left">
+                  <div class="col-md-6 abt-left">
 
-                 <% if article.image.file? %>
-                       <!--<a href=article><image_tag article.image.url(:thumb) /></a>-->
+                    <% if article.image.file? %>
+                        <!--<a href=article><image_tag article.image.url(:thumb) /></a>-->
 
-                     <%= link_to article_path(article) do %>
-                     <%= image_tag article.image.url(:thumb, :height=> '200px') %>
-                     <% end %>
+                        <%= link_to article_path(article) do %>
+                            <%= image_tag article.image.url(:thumb, :height => '200px') %>
+                        <% end %>
 
-                 <% end %>
+                    <% end %>
 
-                 <h3><%= link_to article.title, article_path(article) %></h3>
-                 <p><%= article.text.first(30)%></p>
-                 <table>
-                   <tr>
-                     <td><div class="about-btn">
-                       <%= link_to 'Show', article_path(article) %>
-                     </div></td>
-                     <td><div class="about-btn">
-                       <%= link_to 'Edit', edit_article_path(article) %>
-                     </div></td>
-                     <td><div class="about-btn">
-                       <%= link_to 'Destroy', article_path(article),
-                                   method: :delete,
-                                   data: { confirm: 'Are you sure?' } %>
-                     </div></td>
+                    <h3><%= link_to article.title, article_path(article) %></h3>
+                    <p><%= article.text.first(30) %></p>
+                    <table>
+                      <tr>
+                        <td>
+                          <div class="about-btn">
+                            <%= link_to 'Show', article_path(article) %>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="about-btn">
+                            <%= link_to 'Edit', edit_article_path(article) %>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="about-btn">
+                            <%= link_to 'Destroy', article_path(article),
+                                        method: :delete,
+                                        data: {confirm: 'Are you sure?'} %>
+                          </div>
+                        </td>
 
-                   </tr>
+                      </tr>
 
-                 </table>
+                    </table>
 
-               </div>
+                  </div>
 
-            </div>
+                </div>
             <% end %>
             <div class="clearfix"></div>
-         <% end %>
+        <% end %>
         <div class="clearfix"></div>
 
 
-       </div>
+      </div>
     </div>
 
     <div class="col-md-4 about-right heading">
       <div class="abt-1">
         <h3>ABOUT US</h3>
         <div class="abt-one">
-          <img src="c-2.jpg" alt="" />
-          <p>Quisque non tellus vitae mauris luctus aliquam sit amet id velit. Mauris ut dapibus nulla, a dictum neque.</p>
+          <img src="c-2.jpg" alt=""/>
+          <p>Quisque non tellus vitae mauris luctus aliquam sit amet id velit. Mauris ut dapibus nulla, a dictum
+            neque.</p>
 
         </div>
       </div>
@@ -105,12 +110,18 @@
         <h3>ARCHIVES</h3>
         <ul>
           <li><a href="single.html">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </a></li>
-          <li><a href="single.html">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</a></li>
-          <li><a href="single.html">When an unknown printer took a galley of type and scrambled it to make a type specimen book. </a> </li>
-          <li><a href="single.html">It has survived not only five centuries, but also the leap into electronic typesetting</a> </li>
-          <li><a href="single.html">Remaining essentially unchanged. It was popularised in the 1960s with the release of </a> </li>
-          <li><a href="single.html">Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing </a> </li>
-          <li><a href="single.html">Software like Aldus PageMaker including versionsof Lorem Ipsum.</a> </li>
+          <li><a href="single.html">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</a>
+          </li>
+          <li>
+            <a href="single.html">When an unknown printer took a galley of type and scrambled it to make a type specimen
+              book. </a></li>
+          <li><a href="single.html">It has survived not only five centuries, but also the leap into electronic
+            typesetting</a></li>
+          <li><a href="single.html">Remaining essentially unchanged. It was popularised in the 1960s with the release
+            of </a></li>
+          <li><a href="single.html">Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+            publishing </a></li>
+          <li><a href="single.html">Software like Aldus PageMaker including versionsof Lorem Ipsum.</a></li>
         </ul>
       </div>
 
@@ -126,31 +137,31 @@
 
 
 
-  <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-  <div class="container">
-    <div class="about-main">
-      <!--<div class="col-md-8 about-center">-->
-        <div class="about-one">
-  <div class="clearfix"></div>
-  <div class="about-one">
-    <h1 class="b1">
-      <a href= <%= new_article_path%> ><span class="label label-danger">New article</span></a>
-    <!--<div class="label label-default">-->
-      <!--<%= link_to 'New article', new_article_path %>-->
-    <!--</div>-->
-      </h1>
-  </div>
-  <div class="clearfix"></div>
-<!--</div>-->
-  </div>
+<div class="container">
+  <div class="about-main">
+    <!--<div class="col-md-8 about-center">-->
+    <div class="about-one">
+      <div class="clearfix"></div>
+      <div class="about-one">
+        <h1 class="b1">
+          <a href=<%= new_article_path %>><span class="label label-danger">New article</span></a>
+          <!--<div class="label label-default">-->
+          <!--<%= link_to 'New article', new_article_path %>-->
+          <!--</div>-->
+        </h1>
+      </div>
+      <div class="clearfix"></div>
+      <!--</div>-->
     </div>
-    <div class="clearfix"></div>
   </div>
-
-
-
   <div class="clearfix"></div>
+</div>
+
+
+
+<div class="clearfix"></div>
 
 
 <!--slide-starts-->
@@ -160,24 +171,24 @@
       <ul id="flexiselDemo3">
         <% @articles.each do |article| %>
 
-        <li>
-          <a href="#">
-            <div class="banner-1">
-              <% if article.image.file? %>
+            <li>
+              <a href="#">
+                <div class="banner-1">
+                  <% if article.image.file? %>
 
-                  <%= image_tag article.image.url(:thumb) %>
-              <% end %>
+                      <%= image_tag article.image.url(:thumb) %>
+                  <% end %>
 
 
-            </div>
-          </a>
-        </li>
+                </div>
+              </a>
+            </li>
 
         <% end %>
       </ul>
 
       <script type="text/javascript">
-        $(window).load(function() {
+        $(window).load(function () {
 
           $("#flexiselDemo3").flexisel({
             visibleItems: 5,
@@ -188,15 +199,15 @@
             enableResponsiveBreakpoints: true,
             responsiveBreakpoints: {
               portrait: {
-                changePoint:480,
+                changePoint: 480,
                 visibleItems: 2
               },
               landscape: {
-                changePoint:640,
+                changePoint: 640,
                 visibleItems: 3
               },
               tablet: {
-                changePoint:768,
+                changePoint: 768,
                 visibleItems: 3
               }
             }
@@ -204,7 +215,7 @@
 
         });
       </script>
-      <div class="clearfix"> </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 </div>

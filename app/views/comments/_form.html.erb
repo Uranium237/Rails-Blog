@@ -1,6 +1,5 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
 
-
     <!--<input f.text_field :commenter value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">-->
     <h4 class="media-heading"><%= f.label :commenter %></h4>
     <h4 class="media-heading"><%= f.text_field :commenter %></h4>

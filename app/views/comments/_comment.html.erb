@@ -15,12 +15,14 @@
       <%= comment.body %>
     </p>
 
-    <% if current_user.present? %>
+
+
         <p>
           <%= link_to 'Destroy Comment', [comment.article, comment], method: :delete,
                       data: {confirm: 'Are you sure?'} %>
         </p>
-    <% end %>
+
+
 
   </div>
 </div>
