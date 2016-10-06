@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
 
-    if current_user.present? and current_user.id == @comment.user.id
+    if current_user.id == @comment.user.id or current_user.asadmin == true
 
       @comment.destroy
       redirect_to article_path(@article)

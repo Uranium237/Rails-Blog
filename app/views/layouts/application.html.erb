@@ -38,11 +38,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
   <!--header-top-starts-->
+
+
+  </div>
   <div class="header-top">
     <div class="container">
-      <div class="head-main">
+      <div class="head-main", style= background-color:black>
         <a href="<%=root_path %>">
-          <%= image_tag "logo-1.png" %>
+          <%= image_tag "download.png" %>
         </a>
       </div>
     </div>
@@ -97,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span> Hello, <%= current_user.email %></span>
               <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
           <% else %>
-              <%= link_to 'Log in', new_user_session_path %> or <%= link_to 'Sign in', new_user_registration_path %>
+              <%= link_to 'Log in', new_user_session_path %> or <%= link_to 'Sign Up', new_user_registration_path %>
           <% end %>
           <div class="clearfix"></div>
         <!--</div>-->
@@ -122,13 +125,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
   <div class="clearfix"></div>
   <!--footer-starts-->
-  <div class="footer">
-    <div class="container">
-      <div class="footer-text">
-        <p> @<a href="http://google.com/" target="_blank">DarkSkull</a> </p>
+
+  <div id="preFooter" class="">
+    <div class="pre-footer-inner">
+      <div class="sqs-layout sqs-grid-12 columns-12 empty" data-layout-label="Pre-Footer Content" data-type="block-field" data-updated-on="1395785497525" id="preFooterBlocks">
+        <div class="row sqs-row">
+          <div class="col sqs-col-12 span-12">
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-text">
+
+        <span class="site-address">Rockbeam Solutions, 214-26 41st Ave, Suite 120, Bayside, NY  11361</span>
+        <span rel="tel" class="site-phone">(631) 458-0100</span>
+        <p> <a href="mailto:email@rockbeamsolutions.com" class="site-email"><span>email@rockbeamsolutions.com</span></a> </p>
+      </div>
+    </div>
+  </div>
+
   <!--footer-end-->
 
 

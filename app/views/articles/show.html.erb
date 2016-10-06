@@ -10,7 +10,7 @@
 
         <p>
         <ul class="blog-ic">
-          <li><span> <i class="glyphicon glyphicon-user"> </i><%= %>></span></li>
+          <li><span> <i class="glyphicon glyphicon-user"> </i><%= @article.user.email %></span></li>
           <li><span><i class="glyphicon glyphicon-time"> </i><%= @article.created_at.strftime("%d-%m-%Y") %></span></li>
           <li><span><i class="glyphicon glyphicon-eye-open"> </i>Hits:145</span></li>
         </ul>
@@ -55,9 +55,11 @@
       <!--</tr>-->
 
       <!--</table>-->
-      <div class="about-btn">
-        <%= link_to 'Edit', edit_article_path(@article) %>
-      </div>
+      <% if current_user.present? and current_user.asadmin == true %>
+          <div class="about-btn">
+            <%= link_to 'Edit', edit_article_path(@article) %>
+          </div>
+      <% end %>
       <div class="about-btn">
         <%= link_to 'Back', articles_path %>
       </div>
