@@ -21,7 +21,7 @@ set :scm, :git
 # set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
@@ -45,25 +45,13 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
 
-namespace :deploy do
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
-end
-
 
 # namespace :puma do
 #   desc "restart puma"
 #   task :restart do
 #     on roles(:app) do
-#       execute 'sudo', 'service', 'puma-manager', 'restart'
+#       execute! :sudo, 'service', 'puma-manager', 'restart'
 #     end
 #   end
 # end
-after 'deploy:publishing', 'puma:restart'
+# after 'deploy:publishing', 'puma:restart'
