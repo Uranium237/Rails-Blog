@@ -1,0 +1,305 @@
+Index: app/models/challenge.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/challenge.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/challenge.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,2 @@
++class Challenge < ApplicationRecord
++end
+Index: app/models/corporation.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/corporation.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/corporation.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,2 @@
++class Corporation < ApplicationRecord
++end
+Index: app/models/following.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/following.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/following.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,6 @@
++class Following < ApplicationRecord
++
++  belongs_to :user
++  belongs_to :follower, :class_name => 'User'
++
++end
+Index: app/models/partner.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/partner.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/partner.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,2 @@
++class Partner < ApplicationRecord
++end
+Index: app/models/role.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/role.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/role.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,5 @@
++class Role < ApplicationRecord
++
++  has_many :users
++
++end
+Index: app/models/runner.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/runner.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/runner.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,5 @@
++class Runner < ApplicationRecord
++
++
++
++end
+Index: app/models/user.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/models/user.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ app/models/user.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,14 @@
++class User < ApplicationRecord
++
++  devise :database_authenticatable, :registerable,
++         :recoverable, :rememberable, :trackable, :validatable
++
++  belongs_to :role
++
++  has_many :followings
++  has_many :followers, :through => :followings
++
++  has_many :inverse_followings, :class_name => 'Following', :foreign_key => 'follower_id'
++  has_many :inverse_followers, :through => :inverse_followings, :sourse => :user
++
++end
+Index: config/database.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- config/database.yml	(revision 568b366a270e1392d46df343f043b97f77f528ca)
++++ config/database.yml	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -24,6 +24,9 @@
+ development:
+   <<: *default
+   database: atlas-backend_development
++  username: pguser
++  password: 123
++  # host: 192.168.0.107
+ 
+   # The specified database role being used to connect to postgres.
+   # To create additional roles in postgres see `$ createuser --help`.
+@@ -55,10 +58,8 @@
+ # Warning: The database defined as "test" will be erased and
+ # re-generated from your development database when you run "rake".
+ # Do not set this db to the same as development or production.
+-test:
+-  <<: *default
+-  database: atlas-backend_test
+ 
++
+ # As with config/secrets.yml, you never want to store sensitive information,
+ # like your database password, in your source code. If your source code is
+ # ever seen by anyone, they now have access to your database.
+@@ -78,8 +79,3 @@
+ #   production:
+ #     url: <%= ENV['DATABASE_URL'] %>
+ #
+-production:
+-  <<: *default
+-  database: atlas-backend_production
+-  username: atlas-backend
+-  password: <%= ENV['ATLAS-BACKEND_DATABASE_PASSWORD'] %>
+Index: db/migrate/20161017151631_devise_create_users.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161017151631_devise_create_users.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161017151631_devise_create_users.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,44 @@
++class DeviseCreateUsers < ActiveRecord::Migration[5.0]
++  def change
++    create_table :users do |t|
++      ## Database authenticatable
++      t.string :email,              null: false, default: ""
++      t.string :encrypted_password, null: false, default: ""
++
++      ## Recoverable
++      t.string   :reset_password_token
++      t.datetime :reset_password_sent_at
++
++      ## Rememberable
++      t.datetime :remember_created_at
++
++      ## Trackable
++      t.integer  :sign_in_count, default: 0, null: false
++      t.datetime :current_sign_in_at
++      t.datetime :last_sign_in_at
++      t.string   :current_sign_in_ip
++      t.string   :last_sign_in_ip
++
++
++      t.string   :role
++      ## Confirmable
++      # t.string   :confirmation_token
++      # t.datetime :confirmed_at
++      # t.datetime :confirmation_sent_at
++      # t.string   :unconfirmed_email # Only if using reconfirmable
++
++      ## Lockable
++      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
++      # t.string   :unlock_token # Only if unlock strategy is :email or :both
++      # t.datetime :locked_at
++
++
++      t.timestamps null: false
++    end
++
++    add_index :users, :email,                unique: true
++    add_index :users, :reset_password_token, unique: true
++    # add_index :users, :confirmation_token,   unique: true
++    # add_index :users, :unlock_token,         unique: true
++  end
++end
+Index: db/migrate/20161018182231_create_roles.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161018182231_create_roles.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161018182231_create_roles.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,9 @@
++class CreateRoles < ActiveRecord::Migration[5.0]
++  def change
++    create_table :roles do |t|
++      t.string :name
++
++      t.timestamps
++    end
++  end
++end
+Index: db/migrate/20161019162441_create_followings.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161019162441_create_followings.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161019162441_create_followings.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,17 @@
++class CreateFollowings < ActiveRecord::Migration[5.0]
++  def change
++    create_table :followings do |t|
++      t.integer :user_id
++      t.integer :follower_id
++      t.boolean :blocked
++
++      t.timestamps
++    end
++
++    add_index :followings, [:user_id, :follower_id]
++
++    add_foreign_key :followings, :users, :column => :user_id, :primary_key => 'id'
++    add_foreign_key :followings, :users, :column => :follower_id, :primary_key => 'id'
++
++  end
++end
+Index: db/migrate/20161020154425_create_challenges.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161020154425_create_challenges.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161020154425_create_challenges.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,19 @@
++class CreateChallenges < ActiveRecord::Migration[5.0]
++  def change
++    create_table :challenges do |t|
++      t.string :title
++      t.string :description
++      t.datetime :begin_date
++      t.datetime :date_of_end
++      t.real :budget
++      t.integer :num_of_runners
++      t.real :total_miles
++      t.string :cause
++      t.string :sponsors
++      t.string :organisators
++      t.string :runners
++
++      t.timestamps
++    end
++  end
++end
+Index: db/migrate/20161020164048_create_runners.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161020164048_create_runners.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161020164048_create_runners.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,9 @@
++class CreateRunners < ActiveRecord::Migration[5.0]
++  def change
++    create_table :runners do |t|
++      t.string :name
++
++      t.timestamps
++    end
++  end
++end
+Index: db/migrate/20161020164208_create_corporations.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161020164208_create_corporations.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161020164208_create_corporations.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,11 @@
++class CreateCorporations < ActiveRecord::Migration[5.0]
++  def change
++    create_table :corporations do |t|
++      t.string :label
++      t.string :description
++      t.real :donate
++
++      t.timestamps
++    end
++  end
++end
+Index: db/migrate/20161020164921_create_partners.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- db/migrate/20161020164921_create_partners.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
++++ db/migrate/20161020164921_create_partners.rb	(revision 171e62074823a830eaa6b5daf1fc89ae24285c7c)
+@@ -0,0 +1,10 @@
++class CreatePartners < ActiveRecord::Migration[5.0]
++  def change
++    create_table :partners do |t|
++      t.string :label
++      t.string :description
++
++      t.timestamps
++    end
++  end
++end
